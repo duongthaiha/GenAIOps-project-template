@@ -34,8 +34,8 @@ param storageAccountName string = ''
  
 // Azure OpenAI parameters
  
-param oaiApiVersion string = '2023-05-15'
-param oaiChatDeployment string = 'gpt-35-turbo'
+param oaiApiVersion string = '2024-02-01'
+param oaiChatDeployment string = 'gpt-4o'
 param oaiEmbeddingDeployment string = 'text-embedding-ada-002'
 param oaiEmbeddingModel string = 'text-embedding-ada-002'
  
@@ -44,8 +44,8 @@ param azureSearchIndexSampleData string = ''
 var _azureSearchIndexSampleData = !empty(azureSearchIndexSampleData) ? azureSearchIndexSampleData : 'true'
  
 @description('User or service principal identity to assign application roles')
-param principalId string = ''
-param principalType string = 'ServicePrincipal'
+param principalId string = '3cff1542-912f-4f64-b2f0-1c254dd4ad3c'
+param principalType string = 'User'
  
 // Flow parameters
  
@@ -55,7 +55,7 @@ var _promptFlowWorkerNum = !empty(promptFlowWorkerNum) ? promptFlowWorkerNum : '
 param promptFlowServingEngine string = ''
 var _promptFlowServingEngine = !empty(promptFlowServingEngine) ? promptFlowServingEngine : 'fastapi'
  
-var _resourceToken = toLower(uniqueString(subscription().id, environmentName, location, deploymentTimestamp))
+var _resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
 var _keyVaultName = !empty(keyVaultName) ? keyVaultName : '${_abbrs.keyVaultVaults}${_resourceToken}'
  
  
